@@ -11,16 +11,12 @@ The dependencies are listed in the [requiremments.txt](https://github.com/SyedMu
 <hr/>
 
 ## Setup
-It is recommended to start with a python virtual environment. On Unix-based systems,
+It is recommended to start with a python virtual environment. On Linux,
 ```console
 python3 -m venv venv
 ```
-On Windows,
-```console
-python -m venv venv
-```
 
-To enter venv (virtual environment) on Unix-based systems,
+To enter venv (virtual environment) on Linux,
 ```console
 source venv/bin/activate
 ```
@@ -34,20 +30,12 @@ To pull this application's python dependencies use the command,
 pip install -r requirements.txt
 ```
 
-To use package on Unix-based systems,
-```console
-python3 main.py [--OPTIONS] [COMMAND] [ARGUMENTS]
-```
-On Windows,
+To use package on Linux,
 ```console
 python3 main.py [--OPTIONS] [COMMAND] [ARGUMENTS]
 ```
 
-To get list of available commands and help on Unix-based systems,
+To get list of available commands and help on Linux,
 ```console
 python3 main.py --help
-```
-On Windows,
-```console
-python main.py --help
 ```
