@@ -1,1 +1,4 @@
 venv/*
+bld/*
+sqlite/*
+sqlite.tar.gz
