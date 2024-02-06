@@ -1,10 +1,15 @@
 import socket
 
+hostname=socket.gethostname()
+IPAddr=socket.gethostbyname(hostname)
+print("Your Computer Name is: " + hostname)
+print("Your Computer IP Address is: " + IPAddr)
+
 # Create a UDP socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Bind the socket to the port
-server_address = '127.0.0.1'
+server_address = IPAddr
 server_port = 10001
 
 # Buffer size
