@@ -7,6 +7,9 @@ import click
 
 from who_is_on_my_wifi import *
 
+import perfbench
+import netbench
+
 
 #####################################################
 # CLICK COMMANDS                                    #
@@ -42,9 +45,6 @@ def add_todo(name, description, priority, todo_file):
 
 @click.command()
 def networkscan():
-
-    
-        
     dev = device()
     print(f"""
     PC Name:            {dev[0]}
@@ -76,6 +76,18 @@ def networkscan():
     ISP:                {dev[24]}
     """)
 
+@click.command()
+def perfbenchmark():
+    perfbench.getBenchmark()
+    perfbench.configureBenchmark()
+    perfbench.runBenchmark()
+
+@click.command()
+@click.argument("ip", type=click.STRING, required=True)
+@click.argument('packets', type=click.INT, default=5)
+def netbenchmark(ip, packets):
+    netbench.runBenchmark(ip, str(packets))
+
 
 #####################################################
 # CLICK GROUP                                       #
@@ -84,6 +96,8 @@ app_commands.add_command(hello)         # Test Command
 app_commands.add_command(add_todo)      # Test Command
 
 app_commands.add_command(networkscan)   # 0 - Network Scan on Wifi
+app_commands.add_command(perfbenchmark)
+app_commands.add_command(netbenchmark)
 # TBD ...
 
 
