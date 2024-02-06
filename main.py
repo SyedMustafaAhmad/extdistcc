@@ -9,6 +9,8 @@ from who_is_on_my_wifi import *
 
 import perfbench
 import netbench
+import client
+import server
 
 
 #####################################################
@@ -84,9 +86,21 @@ def perfbenchmark():
 
 @click.command()
 @click.argument("ip", type=click.STRING, required=True)
-@click.argument('packets', type=click.INT, default=5)
+@click.argument('packets', type=click.INT, default=10)
 def netbenchmark(ip, packets):
     netbench.runBenchmark(ip, str(packets))
+
+@click.command()
+@click.option("--debug", help="Enable debug mode for terminal output", type=click.BOOL, default=True)
+def startclient(debug):
+    client.wait(debug)
+
+@click.command()
+@click.option("--debug", help="Enable debug mode for terminal output", type=click.BOOL, default=True)
+def startserver(debug):
+    server.serve(debug)
+
+
 
 
 #####################################################
@@ -98,6 +112,9 @@ app_commands.add_command(add_todo)      # Test Command
 app_commands.add_command(networkscan)   # 0 - Network Scan on Wifi
 app_commands.add_command(perfbenchmark)
 app_commands.add_command(netbenchmark)
+
+app_commands.add_command(startclient)
+app_commands.add_command(startserver)
 # TBD ...
 
 
