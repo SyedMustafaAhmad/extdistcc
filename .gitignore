@@ -2,3 +2,4 @@ venv/*
 bld/*
 sqlite/*
 sqlite.tar.gz
+__pycache__/*
