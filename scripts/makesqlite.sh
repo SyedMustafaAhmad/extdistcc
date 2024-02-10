@@ -1,4 +1,6 @@
 #!/usr/bin/bash
 cd bld
-time make -j8
+NPROC=$(nproc)
+echo "Compiling with $NPROC cores"
+time make clean -j$NPROC
 cd ..

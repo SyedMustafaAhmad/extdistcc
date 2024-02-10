@@ -1,7 +1,11 @@
 import subprocess
+import os
 
 def getBenchmark():
-    subprocess.run(["./scripts/getsqlite.sh"]) 
+    if os.path.exists('sqlite.tar.gz'):
+        print('File already exists. Starting configuration ...')
+    else:
+        subprocess.run(["./scripts/getsqlite.sh"])
 
 def configureBenchmark():
     subprocess.run(["./scripts/configuresqlite.sh"]) 
