@@ -5,12 +5,12 @@ import os
 import sys
 import click
 
-from who_is_on_my_wifi import *
-
 import perfbench
 import netbench
 import client
 import server
+import scanarp
+# import scanself
 
 
 #####################################################
@@ -44,40 +44,6 @@ def add_todo(name, description, priority, todo_file):
     with open(file, "a+") as f:
         f.write(f"{PRIORITIES[priority]}: {name} - {description}\n")
 
-
-@click.command()
-def networkscan():
-    dev = device()
-    print(f"""
-    PC Name:            {dev[0]}
-    PC Product-Name:    {dev[1]}
-    MAC Address:        {dev[2]}
-    IP Address (host):  {dev[3]}
-    IP Address:         {dev[4]}
-    Public IP:          {dev[5]}
-    PC HostName:        {dev[6]}
-    WiFi Name:          {dev[7]}
-    Gateway:            {dev[8]}
-    DNS 1:              {dev[9]}
-    DNS 2:              {dev[10]}
-    Password:           {dev[11]}
-    Security:           {dev[12]}
-    Interface:          {dev[13]}
-    Frequency:          {dev[14]}
-    Signal:             {dev[15]}
-    Channel:            {dev[16]}
-
-
-    Country:            {dev[17]}
-    Region:             {dev[18]}
-    City:               {dev[19]}
-    Zip Code:           {dev[20]}
-    Latitude:           {dev[21]}
-    Longitude:          {dev[22]}
-    Map:                {dev[23]}
-    ISP:                {dev[24]}
-    """)
-
 @click.command()
 def perfbenchmark():
     perfbench.getBenchmark()
@@ -100,6 +66,14 @@ def startclient(debug):
 def startserver(debug):
     server.serve(debug)
 
+@click.command()
+def arpscan():
+    scanarp.scanall()
+
+# @click.command()
+# def selfscan():
+#     scanself.scanme()
+
 
 
 
@@ -109,7 +83,8 @@ def startserver(debug):
 app_commands.add_command(hello)         # Test Command
 app_commands.add_command(add_todo)      # Test Command
 
-app_commands.add_command(networkscan)   # 0 - Network Scan on Wifi
+# app_commands.add_command(selfscan)   # 0 - Network Scan on Wifi
+app_commands.add_command(arpscan)
 app_commands.add_command(perfbenchmark)
 app_commands.add_command(netbenchmark)
 

@@ -93,7 +93,29 @@ def usage():
     print("Usage: %s [-i <interface>]" % sys.argv[0])
 
 
+def scanall():
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], 'hi:', ['help', 'interface='])
+    except getopt.GetoptError as err:
+        print(str(err))
+        usage()
+        sys.exit(2)
+
+    interface = None
+
+    for o, a in opts:
+        if o in ('-h', '--help'):
+            usage()
+            sys.exit()
+        elif o in ('-i', '--interface'):
+            interface = a
+        else:
+            assert False, 'unhandled option'
+
+    main(interface_to_scan=interface)
+
 if __name__ == "__main__":
+
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'hi:', ['help', 'interface='])
     except getopt.GetoptError as err:
